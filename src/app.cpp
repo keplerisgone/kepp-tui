@@ -13,7 +13,21 @@
 
 namespace kepp {
 
+#ifndef KEPP_VERSION
+#define KEPP_VERSION "development"
+#endif
+
 int run_app(int argc, char **argv) {
+  if (argc == 2 && std::string_view(argv[1]) == "--version") {
+    std::cout << "kepp " << KEPP_VERSION << '\n';
+    return 0;
+  }
+  if (argc == 2 && (std::string_view(argv[1]) == "--help" ||
+                    std::string_view(argv[1]) == "-h")) {
+    std::cout << "Usage: kepp [project|github|calendar]\n"
+                 "       kepp [--help|--version]\n";
+    return 0;
+  }
   if (argc == 2 && std::string_view(argv[1]) == "project") {
     return project::run();
   }
@@ -35,7 +49,7 @@ int run_app(int argc, char **argv) {
           "Projects, Git status, and safe commands",
           "Repositories, Issues, PRs, and Actions",
           "Seven-day view and one-off event CRUD", "Exit KEPP TUI"};
-      return vbox({text("KEPP TUI v1.0") | bold | color(Color::Cyan),
+      return vbox({text("KEPP TUI v" KEPP_VERSION) | bold | color(Color::Cyan),
                    text("Select a module"), separator(), menu->Render() | frame,
                    separator(), paragraph(descriptions[selected]),
                    text("Enter: Open · q: Quit") | dim}) |
@@ -54,7 +68,8 @@ int run_app(int argc, char **argv) {
     }
   }
 
-  std::cerr << "Usage: kepp [project|github|calendar]\n";
+  std::cerr << "Usage: kepp [project|github|calendar]\n"
+               "       kepp [--help|--version]\n";
   return 2;
 }
 

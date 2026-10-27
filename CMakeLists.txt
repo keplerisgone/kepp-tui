@@ -83,6 +83,7 @@ target_link_libraries(kepp PRIVATE
   ftxui::dom
   ftxui::component
 )
+target_compile_definitions(kepp PRIVATE KEPP_VERSION="${PROJECT_VERSION}")
 target_compile_options(kepp PRIVATE -Wall -Wextra -Wpedantic)
 install(TARGETS kepp RUNTIME DESTINATION bin)
 
@@ -101,3 +102,4 @@ add_executable(calendar_tests tests/calendar/calendar_tests.cpp)
 target_link_libraries(calendar_tests PRIVATE kepp_calendar_core)
 target_compile_options(calendar_tests PRIVATE -Wall -Wextra -Wpedantic)
 add_test(NAME calendar_tests COMMAND calendar_tests)
+add_test(NAME install_script_help COMMAND sh ${CMAKE_SOURCE_DIR}/install.sh --help)

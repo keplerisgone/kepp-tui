@@ -13,6 +13,28 @@ Requirements are CMake 3.20+, a C++20 compiler, Git, and `curl`. GitHub Console 
 GitHub CLI (`gh`). CMake downloads checksum-pinned FTXUI, toml++, and nlohmann/json sources on the
 first configure. It does not invoke Homebrew, apt, or sudo.
 
+For a normal per-user installation:
+
+```sh
+./install.sh
+```
+
+This builds a Release binary and installs it as `~/.local/bin/kepp`. If that directory is not on
+`PATH`, the script prints the exact command for the current shell. It deliberately does not modify
+shell startup files or invoke `sudo`. A custom location is also supported:
+
+```sh
+./install.sh --prefix "$HOME/.local"
+```
+
+After adding the installation directory to `PATH`, start the application from anywhere with:
+
+```sh
+kepp
+```
+
+For development, the equivalent Make targets are:
+
 ```sh
 make build
 make test
