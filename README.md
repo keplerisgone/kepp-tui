@@ -7,9 +7,6 @@ KEPP TUI is a C++20 terminal workspace with three independent modules:
 - `kepp calendar` — Google Calendar seven-day view and one-off event CRUD
 - `kepp` — interactive module selector
 
-The original Korean specifications are preserved under [`docs/specs`](docs/specs): the integrated
-TUI design, Project Launcher, GitHub Console, and Calendar specifications.
-
 ## Build and install
 
 Requirements are CMake 3.20+, a C++20 compiler, Git, and `curl`. GitHub Console also needs the
